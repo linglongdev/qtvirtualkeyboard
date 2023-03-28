@@ -1,0 +1,31 @@
+Description: disable building plugins requiring non-DFSG compliant 3rdparty code
+ Some langs require 3rd party code not complaint with the DFSG, so remove them
+ when building with lang-all.
+Author: Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>
+Last-Update: 2019-03-26
+
+---
+ src/config.pri |    6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+--- a/src/config.pri
++++ b/src/config.pri
+@@ -6,7 +6,6 @@ handwriting:!lipi-toolkit:!t9write:!mysc
+     } else {
+         include(plugins/t9write/3rdparty/t9write/t9write-build.pri)
+         equals(T9WRITE_FOUND, 1): CONFIG += t9write
+-        else: CONFIG += lipi-toolkit
+     }
+ }
+ myscript {
+@@ -97,10 +96,7 @@ LAYOUTS_PREFIX = /QtQuick/VirtualKeyboar
+ VIRTUALKEYBOARD_INSTALL_DATA = $$[QT_INSTALL_DATA]/qtvirtualkeyboard
+ 
+ # Enable features by languages
+-contains(CONFIG, lang-ja.*)|lang-all: CONFIG += openwnn
+ contains(CONFIG, lang-ko.*)|lang-all: CONFIG += hangul
+-contains(CONFIG, lang-zh(_CN)?)|lang-all: CONFIG += pinyin
+-contains(CONFIG, lang-zh(_TW)?)|lang-all: CONFIG += tcime
+ contains(CONFIG, lang-th.*)|lang-all: CONFIG += thai
+ 
+ # Feature dependencies

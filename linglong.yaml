@@ -1,0 +1,29 @@
+package:
+  id: qtvirtualkeyboard
+  name: qtvirtualkeyboard
+  kind: lib
+  version: 5.11.3
+  description: |
+    qtvirtualkeyboard
+
+base:
+  id: org.deepin.base
+  version: 20.5.0
+
+depends:
+- id: qtbase
+  version: 5.11.3.15
+- id: qtdeclarative
+  version: 5.11.3
+- id: qtsvg
+  version: 5.11.3
+
+source:
+  kind: git
+  url: https://github.com/deepin-community/qtvirtualkeyboard-opensource-src.git
+  version: uos/5.11.3
+  commit: 345a05d05761c976ea053e6d61a64262cd12cf30
+  patch:
+  - disable_non_dfsg_modules.patch
+build:
+  kind: qmake
